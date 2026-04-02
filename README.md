@@ -170,7 +170,7 @@ No external libraries are required — image I/O is handled by the bundled [stb_
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/mohammadabdulhakim/cpp-image-processor.git
+git clone https://github.com/moabdulhakim/cpp-image-processor.git
 cd cpp-image-processor
 
 # 2. Configure with CMake
@@ -298,6 +298,6 @@ The menu will automatically display and dispatch the new filter.
 
 ---
 
-> 📂 **Repository:** https://github.com/mohammadabdulhakim/cpp-image-processor  
+> 📂 **Repository:** https://github.com/moabdulhakim/cpp-image-processor  
 > 🎬 **Demo Video:** https://www.youtube.com/watch?v=BYMyUjpoP5g  
 > 📄 **Documentation:** [Google Docs](https://docs.google.com/document/d/1qCHJ92_c90hBn0wo34rJ349e9NXzKGfr/edit?usp=sharing)
