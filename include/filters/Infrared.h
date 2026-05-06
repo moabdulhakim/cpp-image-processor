@@ -8,7 +8,7 @@ class Infrared : public Filter
 {
 public:
     Infrared(Image &img);
-    string getName();
+    static string getName();
     static string getId();
     void apply() override;
     void getNeeds() override;

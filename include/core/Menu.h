@@ -7,15 +7,14 @@
 #define MENU_H
 
 
-
 class Menu
 {
     bool isActive = true;
     string res;
-    vector<pair<string, shared_ptr<Filter>>>& filters;
+    vector<pair<string, string>> menuOptions;
 
 public:
-    Menu(vector<pair<string, shared_ptr<Filter>>>& filters);
+    Menu(vector<pair<string, string>> menuOptions);
 
     void welcomeMsg();
 

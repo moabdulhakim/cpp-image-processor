@@ -12,7 +12,7 @@ class Blur : public Filter
 
 public:
     Blur(Image &img, int r = 10);
-    string getName();
+    static string getName();
     static string getId();
 
     void Prefix_sum(Image &image, vector<vector<ll>> &prefixR, vector<vector<ll>> &prefixG, vector<vector<ll>> &prefixB);

@@ -8,7 +8,7 @@ class Bloody : public Filter
 {
 public:
     Bloody(Image &img);
-    string getName();
+    static string getName();
     static string getId();
     void apply() override;
     void getNeeds() override;

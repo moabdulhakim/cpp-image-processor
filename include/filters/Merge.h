@@ -12,7 +12,7 @@ class Merge : public Filter
 
 public:
     Merge(Image &img);
-    string getName();
+    static string getName();
     static string getId();
 
     void getNeeds() override;

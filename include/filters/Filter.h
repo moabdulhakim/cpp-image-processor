@@ -16,7 +16,7 @@ public:
     Filter(Image &img);
     virtual void apply() = 0;
     virtual void getNeeds() = 0;
-    virtual string getName() = 0;
+    static string getName() {};
     static string getId() {};
 
     double computeThreshold();

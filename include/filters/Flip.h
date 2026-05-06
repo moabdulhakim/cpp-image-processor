@@ -10,7 +10,7 @@ class Flip : public Filter
 
 public:
     Flip(Image &img);
-    string getName();
+    static string getName();
     static string getId();
     ;
 

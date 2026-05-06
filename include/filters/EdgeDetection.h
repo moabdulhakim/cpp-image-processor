@@ -11,7 +11,7 @@ class EdgeDetection : public Filter
 {
 public:
     EdgeDetection(Image &img);
-    string getName();
+    static string getName();
     map<string, vector<vector<int>>> sobelKernels();
     static string getId();
     void apply() override;

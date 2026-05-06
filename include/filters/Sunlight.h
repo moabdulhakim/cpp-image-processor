@@ -9,7 +9,7 @@ class Sunlight : public Filter
 {
 public:
     Sunlight(Image &img);
-    string getName();
+    static string getName();
     static string getId();
     void apply();
     void getNeeds() override;

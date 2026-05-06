@@ -24,6 +24,7 @@
 #include <memory>
 #include <vector>
 #include<algorithm>
+#include <functional>
 
 #include "../include/core/Menu.h"
 #include "../include/core/CurrentImage.h"
@@ -61,32 +62,57 @@ int main()
 {
     CurrentImage currentImage;
 
-    vector<pair<string, shared_ptr<Filter>>> filters = {
-        {GreyScale::getId(), make_shared<GreyScale>(currentImage.img)},
-        {WhiteAndBlack::getId(), make_shared<WhiteAndBlack>(currentImage.img)},
-        {Invert::getId(), make_shared<Invert>(currentImage.img)},
-        {Merge::getId(), make_shared<Merge>(currentImage.img)},
-        {Flip::getId(), make_shared<Flip>(currentImage.img)},
-        {Rotate::getId(), make_shared<Rotate>(currentImage.img)},
-        {Brightness::getId(), make_shared<Brightness>(currentImage.img)},
-        {Crop::getId(), make_shared<Crop>(currentImage.img)},
-        {Frame::getId(), make_shared<Frame>(currentImage.img)},
-        {EdgeDetection::getId(),make_shared<EdgeDetection>(currentImage.img)},
-        {Resize::getId(), make_shared<Resize>(currentImage.img)},
-        {Blur::getId(), make_shared<Blur>(currentImage.img)},
-        {Sunlight::getId(), make_shared<Sunlight>(currentImage.img)},
-        {OilPainting::getId(), make_shared<OilPainting>(currentImage.img)},
-        {OldTV::getId(), make_shared<OldTV>(currentImage.img)},
-        {Night::getId(), make_shared<Night>(currentImage.img)},
-        {Infrared::getId(), make_shared<Infrared>(currentImage.img)},
-        {Skewing::getId(), make_shared<Skewing>(currentImage.img)},
-        {Bloody::getId(), make_shared<Bloody>(currentImage.img)},
-        {Grass::getId(),make_shared<Grass>(currentImage.img)},
-        {Sky::getId(),make_shared<Sky>(currentImage.img)},
-        {ArtisticBrush::getId(), make_shared<ArtisticBrush>(currentImage.img)},
+    vector<pair<string, function<shared_ptr<Filter>()>>> filters = {
+        {GreyScale::getId(), [&]() { return make_shared<GreyScale>(currentImage.img); }},
+        {WhiteAndBlack::getId(), [&]() { return make_shared<WhiteAndBlack>(currentImage.img); }},
+        {Invert::getId(), [&]() { return make_shared<Invert>(currentImage.img); }},
+        {Merge::getId(), [&]() { return make_shared<Merge>(currentImage.img); }},
+        {Flip::getId(), [&]() { return make_shared<Flip>(currentImage.img); }},
+        {Rotate::getId(), [&]() { return make_shared<Rotate>(currentImage.img); }},
+        {Brightness::getId(), [&]() { return make_shared<Brightness>(currentImage.img); }},
+        {Crop::getId(), [&]() { return make_shared<Crop>(currentImage.img); }},
+        {Frame::getId(), [&]() { return make_shared<Frame>(currentImage.img); }},
+        {EdgeDetection::getId(), [&]() { return make_shared<EdgeDetection>(currentImage.img); }},
+        {Resize::getId(), [&]() { return make_shared<Resize>(currentImage.img); }},
+        {Blur::getId(), [&]() { return make_shared<Blur>(currentImage.img); }},
+        {Sunlight::getId(), [&]() { return make_shared<Sunlight>(currentImage.img); }},
+        {OilPainting::getId(), [&]() { return make_shared<OilPainting>(currentImage.img); }},
+        {OldTV::getId(), [&]() { return make_shared<OldTV>(currentImage.img); }},
+        {Night::getId(), [&]() { return make_shared<Night>(currentImage.img); }},
+        {Infrared::getId(), [&]() { return make_shared<Infrared>(currentImage.img); }},
+        {Skewing::getId(), [&]() { return make_shared<Skewing>(currentImage.img); }},
+        {Bloody::getId(), [&]() { return make_shared<Bloody>(currentImage.img); }},
+        {Grass::getId(), [&]() { return make_shared<Grass>(currentImage.img); }},
+        {Sky::getId(), [&]() { return make_shared<Sky>(currentImage.img); }},
+        {ArtisticBrush::getId(), [&]() { return make_shared<ArtisticBrush>(currentImage.img); }}
     };
 
-    Menu menu(filters);
+    vector<pair<string,string>> menuOptions = {
+    {GreyScale::getId(), GreyScale::getName()},
+    {WhiteAndBlack::getId(), WhiteAndBlack::getName()},
+    {Invert::getId(), Invert::getName()},
+    {Merge::getId(), Merge::getName()},
+    {Flip::getId(), Flip::getName()},
+    {Rotate::getId(), Rotate::getName()},
+    {Brightness::getId(), Brightness::getName()},
+    {Crop::getId(), Crop::getName()},
+    {Frame::getId(), Frame::getName()},
+    {EdgeDetection::getId(), EdgeDetection::getName()},
+    {Resize::getId(), Resize::getName()},
+    {Blur::getId(), Blur::getName()},
+    {Sunlight::getId(), Sunlight::getName()},
+    {OilPainting::getId(), OilPainting::getName()},
+    {OldTV::getId(), OldTV::getName()},
+    {Night::getId(), Night::getName()},
+    {Infrared::getId(), Infrared::getName()},
+    {Skewing::getId(), Skewing::getName()},
+    {Bloody::getId(), Bloody::getName()},
+    {Grass::getId(), Grass::getName()},
+    {Sky::getId(), Sky::getName()},
+    {ArtisticBrush::getId(), ArtisticBrush::getName()},
+    };
+
+    Menu menu(menuOptions);
     menu.welcomeMsg();
 
     while (menu.getIsActive())
@@ -122,9 +148,13 @@ int main()
             for(auto &filter: filters) {
                 if (filter.first == res) {
                     currentImage.filterApplied();
-                    filter.second->getNeeds();
-                    filter.second->apply();
+
+                    shared_ptr<Filter> selectedFilter = filter.second();
+
+                    selectedFilter->getNeeds();
+                    selectedFilter->apply();
                     noFilterWithRes = false;
+                    break;
                 }
             }
 

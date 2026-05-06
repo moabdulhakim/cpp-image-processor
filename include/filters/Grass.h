@@ -8,7 +8,7 @@ class Grass : public Filter
 {
 public:
     Grass(Image &img);
-    string getName();
+    static string getName();
     static string getId();
     void apply() override;
     void getNeeds() override;

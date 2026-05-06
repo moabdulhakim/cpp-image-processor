@@ -2,7 +2,7 @@
 #include "../../include/utils/Colors.h"
 
 
-    Menu::Menu(vector<pair<string, shared_ptr<Filter>>>& filters) : filters(filters) {};
+    Menu::Menu(vector<pair<string, string>> menuOptions) : menuOptions(menuOptions) {};
 
     void Menu::welcomeMsg()
     {
@@ -25,9 +25,9 @@
             std::cout << RESET << BOLD << "    Choose Filters    \n";
             std::cout << RESET << CYAN << "======================\n" << RESET;
 
-            auto it = filters.begin();
-            while (it != filters.end()) {
-                cout << "\t [" << it->first << "] " << it->second->getName() << " Filter.\n";
+            auto it = menuOptions.begin();
+            while (it != menuOptions.end()) {
+                cout << "\t [" << it->first << "] " << it->second << " Filter.\n";
                 ++it;
             }
 

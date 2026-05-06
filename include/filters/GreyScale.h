@@ -8,7 +8,7 @@ class GreyScale : public Filter
 {
 public:
     GreyScale(Image &img);
-    string getName();
+    static string getName();
     static string getId();
     void apply() override;
     void getNeeds() override;

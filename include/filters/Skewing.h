@@ -11,7 +11,7 @@ class Skewing : public Filter
 
 public:
     Skewing(Image &img);
-    string getName();
+    static string getName();
     static string getId();
     void apply() override;
 

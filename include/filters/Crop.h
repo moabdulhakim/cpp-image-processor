@@ -11,7 +11,7 @@ class Crop : public Filter
 
 public:
     Crop(Image &img);
-    string getName();
+    static string getName();
     static string getId();
     void apply() override;
     void getNeeds() override;

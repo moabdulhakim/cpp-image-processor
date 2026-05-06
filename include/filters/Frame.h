@@ -18,7 +18,7 @@ class Frame : public Filter
 public:
     Frame(Image &img);
 
-    string getName();
+    static string getName();
     static string getId();
 
     void getNeeds() override;
